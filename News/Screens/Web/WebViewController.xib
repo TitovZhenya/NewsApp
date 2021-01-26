@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewController" customModule="News" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="WNA-ka-TWg" id="6lC-6b-z96"/>
+                <outlet property="toolBar" destination="Rd7-HO-K4G" id="5cr-a2-Zd4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="9mK-QF-vHB" id="Sqq-Vj-UPC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-QF-vHB">
+                    <rect key="frame" x="-14" y="44" width="428" height="852"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-HO-K4G">
+                    <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                    <items>
+                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="tgh-ht-PM7"/>
+                        <barButtonItem title="Item" id="KqB-Ii-oed"/>
+                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="5FD-Mo-mRG"/>
+                        <barButtonItem title="Item" id="K6t-Wc-fTe"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="3zb-oc-pcb"/>
+                        <barButtonItem image="square.and.arrow.up" catalog="system" id="Gvk-Fv-72f">
+                            <connections>
+                                <action selector="shareAction:" destination="-1" id="CBP-yU-7z4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="Erb-4b-Ipc"/>
+                        <barButtonItem title="Item" id="3Ab-Aw-gje"/>
+                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="COd-Hl-Dw2"/>
+                    </items>
+                </toolbar>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WNA-ka-TWg">
+                    <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="9mK-QF-vHB" secondAttribute="leading" constant="14" id="6Ov-eY-H8T"/>
+                <constraint firstItem="9mK-QF-vHB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9Ur-Se-GtI"/>
+                <constraint firstItem="WNA-ka-TWg" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="I82-mL-Av8"/>
+                <constraint firstItem="9mK-QF-vHB" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="34" id="UqV-D1-fbe"/>
+                <constraint firstItem="Rd7-HO-K4G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zmz-Hn-jTN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9mK-QF-vHB" secondAttribute="trailing" id="c3B-2g-wpR"/>
+                <constraint firstItem="Rd7-HO-K4G" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="cEz-yS-TI0"/>
+                <constraint firstItem="Rd7-HO-K4G" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dP6-m7-ljV"/>
+                <constraint firstItem="WNA-ka-TWg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="fa8-mr-Hgn"/>
+            </constraints>
+            <point key="canvasLocation" x="-581.15942028985512" y="193.52678571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

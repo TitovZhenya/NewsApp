@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsViewController" customModule="News" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="tS6-D0-8uB" id="DN3-5F-M37"/>
+                <outlet property="searchBar" destination="OAu-8A-jnC" id="bOq-SB-xkp"/>
+                <outlet property="searchStackView" destination="DCO-At-82d" id="74m-YX-7fq"/>
+                <outlet property="segmentControl" destination="SXa-Qi-wpo" id="qDa-VR-RWc"/>
+                <outlet property="table" destination="O17-hG-HnJ" id="rJ9-Ci-QyP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="PhE-a9-WH2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqU-Ci-jM2" customClass="LinearGradient" customModule="News" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                            <color key="value" red="0.058823529411764705" green="0.047058823529411764" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="betweenColor">
+                            <color key="value" red="0.18823529411764706" green="0.16862745098039217" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <color key="value" red="0.14117647058823529" green="0.14117647058823529" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VWG-cw-NP9">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DCO-At-82d">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                            <subviews>
+                                <searchBar clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="OAu-8A-jnC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="pnW-TS-xXe"/>
+                                    </connections>
+                                </searchBar>
+                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cXI-PC-Ow5">
+                                    <rect key="frame" x="0.0" y="10" width="414" height="0.0"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SXa-Qi-wpo">
+                                            <rect key="frame" x="17" y="0.0" width="380" height="1"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <segments>
+                                                <segment title="Top Headlines"/>
+                                                <segment title="Everything"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="17" bottom="0.0" trailing="17"/>
+                                </stackView>
+                            </subviews>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="10" trailing="0.0"/>
+                        </stackView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O17-hG-HnJ">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="tS6-D0-8uB">
+                                <rect key="frame" x="0.0" y="828" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="RDW-kr-D1n"/>
+                                <outlet property="delegate" destination="-1" id="Lyb-R8-9cd"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="DCO-At-82d" secondAttribute="trailing" id="JBc-cT-O9y"/>
+                        <constraint firstItem="DCO-At-82d" firstAttribute="leading" secondItem="VWG-cw-NP9" secondAttribute="leading" id="TL2-xc-ld5"/>
+                        <constraint firstAttribute="trailing" secondItem="O17-hG-HnJ" secondAttribute="trailing" id="ty1-mM-AEg"/>
+                        <constraint firstItem="O17-hG-HnJ" firstAttribute="leading" secondItem="VWG-cw-NP9" secondAttribute="leading" id="tyJ-Ze-ep1"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wqU-Ci-jM2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="CBs-M7-3dw"/>
+                <constraint firstItem="wqU-Ci-jM2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="DpW-Tq-eic"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="O17-hG-HnJ" secondAttribute="bottom" id="cIL-fI-0wi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VWG-cw-NP9" secondAttribute="trailing" id="eg7-7a-dlj"/>
+                <constraint firstItem="VWG-cw-NP9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gzJ-3e-fE5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wqU-Ci-jM2" secondAttribute="bottom" id="lwp-Ld-gAi"/>
+                <constraint firstItem="wqU-Ci-jM2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nJy-v4-hVv"/>
+                <constraint firstItem="VWG-cw-NP9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="sNb-Jl-hav"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="85.714285714285708"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
