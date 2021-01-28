@@ -12,6 +12,7 @@ struct News {
         var url: String?
         var urlToImage: String?
         var publishedAt: String?
+        var note: String?
         
         init(title: String?, description: String?, url: String?, urlToImage: String?, publishedAt: String?) {
             self.title = title
@@ -27,6 +28,7 @@ struct News {
             self.url = realmModel.url
             self.urlToImage = realmModel.urlToImage
             self.publishedAt = realmModel.publishedAt
+            self.note = realmModel.note
         }
     }
 }

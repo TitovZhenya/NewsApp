@@ -7,8 +7,7 @@ extension SceneDelegate: AuthFirebaseDelegate {
         let tabBarController = UITabBarController()
         let navigationController = UINavigationController()
         let filterViewController = FilterViewController()
-        let bookmarksViewController = BookmarksViewController()
-//        let bookmarksViewController = UINavigationController(rootViewController: BookmarksViewController())
+        let bookmarksViewController = UINavigationController(rootViewController: BookmarksViewController())
         
         newsViewController.tabBarItem = UITabBarItem(title: "News", image: UIImage(named: "news"), selectedImage: nil)
         filterViewController.tabBarItem = UITabBarItem(title: "Filter", image: UIImage(named: "filter") , selectedImage: nil)

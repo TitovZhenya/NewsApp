@@ -8,6 +8,7 @@ class NewsRealmModel: Object {
     @objc dynamic var urlToImage: String = ""
     @objc dynamic var publishedAt: String = ""
     @objc dynamic var userId: String = ""
+    @objc dynamic var note: String = ""
         
     override class func primaryKey() -> String? {
         return "id"

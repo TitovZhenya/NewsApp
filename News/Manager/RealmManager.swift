@@ -29,8 +29,8 @@ class RealmManager {
     }
     
     func write(_ model: News.Item?) {
-        let isAdded = isObjectInRelm(url: model?.url ?? "")
-        if !isAdded {
+        let isAdded = findRealmObject(by: model?.url ?? "")
+        if isAdded == nil {
             let realmModel = NewsRealmModel()
             realmModel.userId = FirebaseManager.shared.getUserId()
             realmModel.title = model?.title ?? ""
@@ -38,17 +38,30 @@ class RealmManager {
             realmModel.url = model?.url ?? ""
             realmModel.urlToImage = model?.urlToImage ?? ""
             realmModel.publishedAt = model?.publishedAt ?? ""
+            realmModel.note = model?.note ?? ""
             add(realmModel)
         }
     }
     
-    func isObjectInRelm(url: String) -> Bool {
+    func update(_ model: News.Item?) {
+        let realmModel = NewsRealmModel()
+        realmModel.userId = FirebaseManager.shared.getUserId()
+        realmModel.title = model?.title ?? ""
+        realmModel.desc = model?.description ?? ""
+        realmModel.url = model?.url ?? ""
+        realmModel.urlToImage = model?.urlToImage ?? ""
+        realmModel.publishedAt = model?.publishedAt ?? ""
+        realmModel.note = model?.note ?? ""
+        add(realmModel)
+    }
+    
+    func findRealmObject(by url: String) -> Object? {
         let userId = FirebaseManager.shared.getUserId()
         let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, userId).first
         if object != nil {
-            return true
+            return object
         } else {
-            return false
+            return nil
         }
     }
     

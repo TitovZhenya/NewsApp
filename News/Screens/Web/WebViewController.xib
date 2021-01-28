@@ -61,7 +61,7 @@
                             </wkWebViewConfiguration>
                         </wkWebView>
                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-HO-K4G">
-                            <rect key="frame" x="0.0" y="842" width="414" height="29"/>
+                            <rect key="frame" x="0.0" y="841" width="414" height="30"/>
                             <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             <items>
                                 <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="tgh-ht-PM7"/>
@@ -98,7 +98,7 @@
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="J29-M1-kux" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1ch-g3-p5f"/>
                 <constraint firstAttribute="bottom" secondItem="J29-M1-kux" secondAttribute="bottom" constant="25" id="4aA-S9-5BC"/>
@@ -115,9 +115,6 @@
         <image name="greaterthan" catalog="system" width="128" height="111"/>
         <image name="lessthan" catalog="system" width="128" height="111"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

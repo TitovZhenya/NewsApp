@@ -36,6 +36,7 @@ class NewsViewController: UIViewController {
         segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         table.register(UINib(nibName: NewsCell.reuseIndetifier, bundle: nil), forCellReuseIdentifier: NewsCell.reuseIndetifier)
         searchBar.searchTextField.addDoneButton()
+        searchBar.backgroundColor = .clear
         activityIndicator.isHidden = true
     }
     
@@ -199,7 +200,7 @@ extension NewsViewController: UITableViewDelegate {
             completion(true)
         }
         addFavouritesAction.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)
-        if RealmManager.shared.isObjectInRelm(url: cellViewModel?.url ?? "") {
+        if (RealmManager.shared.findRealmObject(by: cellViewModel?.url ?? "") != nil) {
             addFavouritesAction.image = UIImage(systemName: "bookmark.fill", withConfiguration: config)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         } else {
             addFavouritesAction.image = UIImage(systemName: "bookmark", withConfiguration: config)?.withTintColor(.black, renderingMode: .alwaysOriginal)

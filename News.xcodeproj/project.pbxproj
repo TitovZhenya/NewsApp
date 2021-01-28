@@ -185,6 +185,29 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A84F0D5225C300A600DCF0D9 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				A84F0D5425C300C200DCF0D9 /* Controller */,
+				A84F0D5325C300BD00DCF0D9 /* View */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		A84F0D5325C300BD00DCF0D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A84F0D5425C300C200DCF0D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A863795E25BAF1AC00BC25FB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +501,7 @@
 				A8680D9425B5B4FF00DE6A6F /* Web */,
 				A8770A8825B45AE40036D5A9 /* Filter */,
 				A8770A8925B45AEE0036D5A9 /* Bookmarks */,
+				A84F0D5225C300A600DCF0D9 /* Note */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

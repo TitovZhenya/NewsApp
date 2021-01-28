@@ -17,6 +17,12 @@ class NewsCell: UITableViewCell {
         setUpElements()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        newsImageView.isHidden = true
+    }
+    
     private func setUpElements() {
         backgroundColor = .clear
         selectionStyle = .none

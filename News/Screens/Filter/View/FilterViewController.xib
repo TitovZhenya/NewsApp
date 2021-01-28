@@ -26,7 +26,7 @@
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fq0-T5-s2B">
                             <rect key="frame" x="10" y="0.0" width="394" height="134"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <segments>
                                 <segment title="Category"/>
                                 <segment title="Country"/>
@@ -36,12 +36,14 @@
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8HA-Mj-HDM">
                             <rect key="frame" x="0.0" y="133" width="414" height="685"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="QyH-I5-g4n"/>
                                 <outlet property="delegate" destination="-1" id="y8D-6Q-dBX"/>
                             </connections>
                         </tableView>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="8HA-Mj-HDM" firstAttribute="leading" secondItem="2ls-lb-gHe" secondAttribute="leading" id="C7B-vR-qzx"/>
                         <constraint firstAttribute="trailing" secondItem="8HA-Mj-HDM" secondAttribute="trailing" id="Ere-cR-62z"/>
@@ -52,7 +54,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="2ls-lb-gHe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="H6H-3J-I9J"/>
                 <constraint firstItem="2ls-lb-gHe" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="f6x-xi-9l3"/>

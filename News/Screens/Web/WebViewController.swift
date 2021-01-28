@@ -39,7 +39,6 @@ class WebViewController: UIViewController {
     
     private func setUpElements() {
         self.activityIndicator.hidesWhenStopped = true
-        webView.scrollView.delegate = self
     }
     
     private func setUpObservation() {
@@ -61,7 +60,7 @@ class WebViewController: UIViewController {
     
     private func setFavouritesImage() {
         guard let url = newsModel?.url else { return }
-        if RealmManager.shared.isObjectInRelm(url: url) {
+        if RealmManager.shared.findRealmObject(by: url) != nil {
             favouritesButton.image = UIImage(systemName: "bookmark.fill")
         } else {
             favouritesButton.image = UIImage(systemName: "bookmark")
@@ -82,7 +81,7 @@ class WebViewController: UIViewController {
     
     @IBAction func addToFavouritesAction(_ sender: UIBarButtonItem) {
         guard let url = newsModel?.url else { return }
-        if RealmManager.shared.isObjectInRelm(url: url) {
+        if RealmManager.shared.findRealmObject(by: url) != nil {
             RealmManager.shared.delete(objectField: url)
         } else {
             RealmManager.shared.write(newsModel)
@@ -96,18 +95,5 @@ class WebViewController: UIViewController {
     
     @IBAction func goForwardAction(_ sender: UIBarButtonItem) {
         webView.goForward()
-    }
-}
-
-extension WebViewController: UIScrollViewDelegate {
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
-            lastOffsetY = scrollView.contentOffset.y
-        }
-
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView){
-
-        let hide = scrollView.contentOffset.y > self.lastOffsetY
-        toolBar.isHidden = hide
     }
 }
