@@ -23,82 +23,103 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-QF-vHB">
-                    <rect key="frame" x="0.0" y="90" width="414" height="737"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <wkWebViewConfiguration key="configuration">
-                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                        <wkPreferences key="preferences"/>
-                    </wkWebViewConfiguration>
-                </wkWebView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J29-M1-kux">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="871"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hge-Gm-1O0">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-BR-pzP">
+                                    <rect key="frame" x="306" y="0.0" width="100" height="82"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb7-iT-WO5">
+                                            <rect key="frame" x="24" y="37" width="50" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" title="Close">
+                                                <color key="titleColor" systemColor="systemOrangeColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="dismissViewAction" destination="-1" eventType="touchUpInside" id="qRT-Ic-F18"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="oSA-jx-Frj"/>
+                            </constraints>
+                        </view>
+                        <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-QF-vHB">
+                            <rect key="frame" x="0.0" y="90" width="414" height="751"/>
+                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <wkWebViewConfiguration key="configuration">
+                                <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                <wkPreferences key="preferences"/>
+                            </wkWebViewConfiguration>
+                        </wkWebView>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-HO-K4G">
+                            <rect key="frame" x="0.0" y="842" width="414" height="29"/>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                            <items>
+                                <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="tgh-ht-PM7"/>
+                                <barButtonItem title="Item" image="lessthan" catalog="system" id="KqB-Ii-oed">
+                                    <connections>
+                                        <action selector="goBackAction:" destination="-1" id="Tlm-au-mcn"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem width="70" style="plain" systemItem="fixedSpace" id="5FD-Mo-mRG"/>
+                                <barButtonItem title="Item" image="greaterthan" catalog="system" id="K6t-Wc-fTe">
+                                    <connections>
+                                        <action selector="goForwardAction:" destination="-1" id="elL-pW-ERl"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="3zb-oc-pcb"/>
+                                <barButtonItem image="square.and.arrow.up" catalog="system" id="Gvk-Fv-72f">
+                                    <connections>
+                                        <action selector="shareAction:" destination="-1" id="CBP-yU-7z4"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem width="70" style="plain" systemItem="fixedSpace" id="Erb-4b-Ipc"/>
+                                <barButtonItem title="Item" image="bookmark" catalog="system" id="3Ab-Aw-gje">
+                                    <connections>
+                                        <action selector="addToFavouritesAction:" destination="-1" id="4sw-4l-Our"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="COd-Hl-Dw2"/>
+                            </items>
+                        </toolbar>
+                    </subviews>
+                </stackView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WNA-ka-TWg">
                     <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                 </activityIndicatorView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hge-Gm-1O0">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-BR-pzP">
-                            <rect key="frame" x="307" y="0.0" width="99" height="82"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb7-iT-WO5">
-                                    <rect key="frame" x="24" y="38" width="50" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <state key="normal" title="Close">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="dismissViewAction" destination="-1" eventType="touchUpInside" id="qRT-Ic-F18"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-HO-K4G">
-                    <rect key="frame" x="0.0" y="827" width="414" height="49"/>
-                    <items>
-                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="tgh-ht-PM7"/>
-                        <barButtonItem title="Item" id="KqB-Ii-oed"/>
-                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="5FD-Mo-mRG"/>
-                        <barButtonItem title="Item" id="K6t-Wc-fTe"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="3zb-oc-pcb"/>
-                        <barButtonItem image="square.and.arrow.up" catalog="system" id="Gvk-Fv-72f">
-                            <connections>
-                                <action selector="shareAction:" destination="-1" id="CBP-yU-7z4"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="Erb-4b-Ipc"/>
-                        <barButtonItem title="Item" image="bookmark" catalog="system" id="3Ab-Aw-gje">
-                            <connections>
-                                <action selector="addToFavouritesAction:" destination="-1" id="4sw-4l-Our"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="COd-Hl-Dw2"/>
-                    </items>
-                </toolbar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="J29-M1-kux" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1ch-g3-p5f"/>
+                <constraint firstAttribute="bottom" secondItem="J29-M1-kux" secondAttribute="bottom" constant="25" id="4aA-S9-5BC"/>
+                <constraint firstItem="J29-M1-kux" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9eg-CN-DE1"/>
                 <constraint firstItem="WNA-ka-TWg" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="I82-mL-Av8"/>
-                <constraint firstItem="Rd7-HO-K4G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zmz-Hn-jTN"/>
-                <constraint firstItem="Rd7-HO-K4G" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dP6-m7-ljV"/>
+                <constraint firstItem="J29-M1-kux" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="QQ8-At-FzN"/>
                 <constraint firstItem="WNA-ka-TWg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="fa8-mr-Hgn"/>
-                <constraint firstAttribute="bottom" secondItem="Rd7-HO-K4G" secondAttribute="bottom" constant="20" id="k1h-gv-v6R"/>
             </constraints>
             <point key="canvasLocation" x="-581.15942028985512" y="193.52678571428569"/>
         </view>
     </objects>
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="greaterthan" catalog="system" width="128" height="111"/>
+        <image name="lessthan" catalog="system" width="128" height="111"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

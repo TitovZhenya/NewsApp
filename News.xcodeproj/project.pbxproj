@@ -52,7 +52,6 @@
 		A8770A9B25B45B760036D5A9 /* BookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8770A9925B45B760036D5A9 /* BookmarksViewController.xib */; };
 		A8770AA025B46D190036D5A9 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8770A9E25B46D190036D5A9 /* FilterCell.swift */; };
 		A8770AA125B46D190036D5A9 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8770A9F25B46D190036D5A9 /* FilterCell.xib */; };
-		A8770AA425B46FD50036D5A9 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8770AA325B46FD50036D5A9 /* Filter.swift */; };
 		A8770AA925B483A10036D5A9 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8770AA825B483A10036D5A9 /* Api.swift */; };
 		A8770AAC25B499AD0036D5A9 /* SourceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8770AAB25B499AD0036D5A9 /* SourceResult.swift */; };
 		A87F48D525C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F48D425C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift */; };
@@ -129,7 +128,6 @@
 		A8770A9925B45B760036D5A9 /* BookmarksViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarksViewController.xib; sourceTree = "<group>"; };
 		A8770A9E25B46D190036D5A9 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		A8770A9F25B46D190036D5A9 /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
-		A8770AA325B46FD50036D5A9 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		A8770AA825B483A10036D5A9 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		A8770AAB25B499AD0036D5A9 /* SourceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceResult.swift; sourceTree = "<group>"; };
 		A87F48D425C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksViewController+NewsCellDelegate.swift"; sourceTree = "<group>"; };
@@ -517,7 +515,6 @@
 		A8770A8825B45AE40036D5A9 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				A8770A8C25B45B060036D5A9 /* Model */,
 				A8770A8B25B45B010036D5A9 /* View */,
 				A8770A8A25B45AF80036D5A9 /* Controller */,
 			);
@@ -547,14 +544,6 @@
 				A8770A9225B45B4B0036D5A9 /* FilterViewController.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A8770A8C25B45B060036D5A9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A8770AA325B46FD50036D5A9 /* Filter.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A8770A8D25B45B100036D5A9 /* Controller */ = {
@@ -780,7 +769,6 @@
 				A8CC927625B863E300130EFA /* NewsViewController+UISearchBarDelegate.swift in Sources */,
 				A871F17C25A34E0000FF34F5 /* AppDelegate.swift in Sources */,
 				A8EAA80825BDE79D0054403D /* OnBoardingPageViewController.swift in Sources */,
-				A8770AA425B46FD50036D5A9 /* Filter.swift in Sources */,
 				A86C86C825BF3CEF008CF1C8 /* OnBoardingPageViewController+OnBoardingControllerDelegate.swift in Sources */,
 				A86CF24325A6275600B192B7 /* SignUpViewController+UITextFieldDelegate.swift in Sources */,
 				A8770AA025B46D190036D5A9 /* FilterCell.swift in Sources */,

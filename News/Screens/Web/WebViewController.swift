@@ -7,6 +7,8 @@ class WebViewController: UIViewController {
     @IBOutlet private weak var toolBar: UIToolbar!
     @IBOutlet private weak var favouritesButton: UIBarButtonItem!
     
+    var lastOffsetY: CGFloat = 0
+    
     private var observation: NSKeyValueObservation?
     
     private var newsModel: News.Item?
@@ -37,6 +39,7 @@ class WebViewController: UIViewController {
     
     private func setUpElements() {
         self.activityIndicator.hidesWhenStopped = true
+        webView.scrollView.delegate = self
     }
     
     private func setUpObservation() {
@@ -85,5 +88,26 @@ class WebViewController: UIViewController {
             RealmManager.shared.write(newsModel)
         }
         setFavouritesImage()
+    }
+    
+    @IBAction func goBackAction(_ sender: UIBarButtonItem) {
+        webView.goBack()
+    }
+    
+    @IBAction func goForwardAction(_ sender: UIBarButtonItem) {
+        webView.goForward()
+    }
+}
+
+extension WebViewController: UIScrollViewDelegate {
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+            lastOffsetY = scrollView.contentOffset.y
+        }
+
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView){
+
+        let hide = scrollView.contentOffset.y > self.lastOffsetY
+        toolBar.isHidden = hide
     }
 }
