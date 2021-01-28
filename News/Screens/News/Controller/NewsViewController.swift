@@ -185,11 +185,8 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let webVC = WebViewController()
-        guard let urlString = newsViewModel?.items?[indexPath.row].url,
-              let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedString) else { return }
-        webVC.url = url
+        let cellViewModel = newsViewModel?.items?[indexPath.row]
+        let webVC = WebViewController(cellViewModel)
         webVC.modalPresentationStyle = .fullScreen
         self.present(webVC, animated: true)
     }

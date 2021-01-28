@@ -8,7 +8,7 @@ class RealmManager {
     
     private lazy var realm = try! Realm()
     
-    func add(_ object: Object) {
+    private func add(_ object: Object) {
         try! realm.write {
             realm.add(object, update: .all)
         }
@@ -21,7 +21,8 @@ class RealmManager {
     }
     
     func delete(objectField url: String) {
-        guard let object = realm.objects(NewsRealmModel.self).filter("url = %@", url).first else { return }
+        let userId = FirebaseManager.shared.getUserId()
+        guard let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, userId).first else { return }
         try! realm.write {
             realm.delete(object)
         }

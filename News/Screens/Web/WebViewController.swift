@@ -4,17 +4,25 @@ import WebKit
 class WebViewController: UIViewController {
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var toolBar: UIToolbar!    
+    @IBOutlet private weak var toolBar: UIToolbar!
+    @IBOutlet private weak var favouritesButton: UIBarButtonItem!
+    
     private var observation: NSKeyValueObservation?
-
-    var url: URL?
+    
+    private var newsModel: News.Item?
+    
+    convenience init(_ model: News.Item?) {
+        self.init()
+        self.newsModel = model
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setUpElements()
-        self.setUpObservation()
-        self.loadRequest()
+        setUpElements()
+        setUpObservation()
+        loadRequest()
+        setFavouritesImage()
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -39,10 +47,22 @@ class WebViewController: UIViewController {
         }
     }
     
-    func loadRequest() {
-        guard let url = self.url else { return }
+    private func loadRequest() {
+        guard let urlString = newsModel?.url,
+              let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: encodedString) else { return }
+        
         let request = URLRequest(url: url)
         self.webView.load(request)
+    }
+    
+    private func setFavouritesImage() {
+        guard let url = newsModel?.url else { return }
+        if RealmManager.shared.isObjectInRelm(url: url) {
+            favouritesButton.image = UIImage(systemName: "bookmark.fill")
+        } else {
+            favouritesButton.image = UIImage(systemName: "bookmark")
+        }
     }
     
     @IBAction func dismissViewAction() {
@@ -50,10 +70,20 @@ class WebViewController: UIViewController {
     }
     
     @IBAction func shareAction(_ sender: UIBarButtonItem) {
-        guard let url = url else { return }
+        guard let urlString = newsModel?.url, let url = URL(string: urlString) else { return }
         let shareVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         shareVC.popoverPresentationController?.sourceView = toolBar
         shareVC.popoverPresentationController?.barButtonItem = sender
         present(shareVC, animated: true)
+    }
+    
+    @IBAction func addToFavouritesAction(_ sender: UIBarButtonItem) {
+        guard let url = newsModel?.url else { return }
+        if RealmManager.shared.isObjectInRelm(url: url) {
+            RealmManager.shared.delete(objectField: url)
+        } else {
+            RealmManager.shared.write(newsModel)
+        }
+        setFavouritesImage()
     }
 }

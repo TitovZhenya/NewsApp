@@ -60,11 +60,8 @@ extension BookmarksViewController: UITableViewDataSource {
 extension BookmarksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let webVC = WebViewController()
-        guard let urlString = favouritesNewsModel?[indexPath.row].url,
-              let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedString) else { return }
-        webVC.url = url
+        let cellViewModel = favouritesNewsModel?[indexPath.row]
+        let webVC = WebViewController(cellViewModel)
         webVC.modalPresentationStyle = .fullScreen
         self.present(webVC, animated: true)
     }
