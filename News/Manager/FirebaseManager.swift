@@ -6,8 +6,7 @@ class FirebaseManager {
     private init() {}
     
     static let shared = FirebaseManager()
-    
-    private var currentUser = ""
+    private var userId = ""
     
     weak var delegate: AuthFirebaseDelegate?
     
@@ -18,21 +17,17 @@ class FirebaseManager {
                 closure(error)
             } else {
                 let db = Firestore.firestore()
-                self.currentUser = result!.user.uid
-                db.collection("users").document(self.currentUser).setData(["firstName" : firstName,
-                                                              "lastName" : lastName,
-                                                              "email" : email,
-                                                              "uid" : result!.user.uid])
-//                db.collection("users").addDocument(data: ["firstName" : firstName,
-//                                                          "lastName" : lastName,
-//                                                          "email" : email,
-//                                                          "uid" : result!.user.uid]) { [weak self] (error) in
-//                    if error != nil {
-//                        closure(error)
-//                    } else {
-//                        self?.delegate?.authSignIn()
-//                    }
-//                }
+                self.userId = result!.user.uid
+                db.collection("users")
+                    .document(self.userId)
+                    .setData(["firstName" : firstName,
+                              "lastName" : lastName,
+                              "email" : email,
+                              "uid" : result!.user.uid]) { error in
+                    if error != nil {
+                        closure(error)
+                    }
+                }
                 self.delegate?.authSignIn()
             }
         }
@@ -44,6 +39,7 @@ class FirebaseManager {
             if error != nil {
                 closure(error)
             } else {
+                self.userId = result!.user.uid
                 self.delegate?.authSignIn()
             }
         }
@@ -51,9 +47,10 @@ class FirebaseManager {
     
     func getSignInUser() {
         Auth.auth().addStateDidChangeListener {[weak self] (result, user) in
+            guard let self = self else { return }
             if user != nil {
-                self?.currentUser = result.currentUser!.uid
-                self?.delegate?.authSignIn()
+                self.userId = result.currentUser!.uid
+                self.delegate?.authSignIn()
             }
         }
     }
@@ -63,9 +60,7 @@ class FirebaseManager {
         self.delegate?.authSignOut()
     }
     
-    func setToFavourites() {
-//        let db = Firestore.firestore()
-//        Add to favourites
-//        db.collection("users").document(self.currentUser).updateData(["hello" : ["Any" : "asd"]])
+    func getUserId() -> String {
+        return userId
     }
 }

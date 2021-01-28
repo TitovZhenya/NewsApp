@@ -22,8 +22,9 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-QF-vHB">
-                    <rect key="frame" x="-14" y="44" width="428" height="852"/>
+                <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-QF-vHB">
+                    <rect key="frame" x="0.0" y="90" width="414" height="806"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -51,16 +52,36 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WNA-ka-TWg">
                     <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                 </activityIndicatorView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hge-Gm-1O0">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-BR-pzP">
+                            <rect key="frame" x="307" y="0.0" width="99" height="82"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb7-iT-WO5">
+                                    <rect key="frame" x="24" y="38" width="50" height="36"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="Close">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="dismissViewAction" destination="-1" eventType="touchUpInside" id="qRT-Ic-F18"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="9mK-QF-vHB" secondAttribute="leading" constant="14" id="6Ov-eY-H8T"/>
-                <constraint firstItem="9mK-QF-vHB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9Ur-Se-GtI"/>
                 <constraint firstItem="WNA-ka-TWg" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="I82-mL-Av8"/>
-                <constraint firstItem="9mK-QF-vHB" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="34" id="UqV-D1-fbe"/>
                 <constraint firstItem="Rd7-HO-K4G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zmz-Hn-jTN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9mK-QF-vHB" secondAttribute="trailing" id="c3B-2g-wpR"/>
                 <constraint firstItem="Rd7-HO-K4G" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="cEz-yS-TI0"/>
                 <constraint firstItem="Rd7-HO-K4G" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dP6-m7-ljV"/>
                 <constraint firstItem="WNA-ka-TWg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="fa8-mr-Hgn"/>

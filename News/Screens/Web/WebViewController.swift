@@ -44,6 +44,11 @@ class WebViewController: UIViewController {
         let request = URLRequest(url: url)
         self.webView.load(request)
     }
+    
+    @IBAction func dismissViewAction() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func shareAction(_ sender: UIBarButtonItem) {
         guard let url = url else { return }
         let shareVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)

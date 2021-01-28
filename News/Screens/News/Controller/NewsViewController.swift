@@ -86,7 +86,6 @@ class NewsViewController: UIViewController {
     private func setModelData(_ data: NewsResult?) {
         let resultArticles = data?.articles.map { newsItem -> News.Item in
             let date = newsItem.publishedAt?.toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
-            
             return News.Item(title: newsItem.title,
                              description: newsItem.description,
                              url: newsItem.url,
@@ -191,6 +190,23 @@ extension NewsViewController: UITableViewDelegate {
               let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedString) else { return }
         webVC.url = url
-        self.navigationController?.pushViewController(webVC, animated: true)
+        webVC.modalPresentationStyle = .fullScreen
+        self.present(webVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large)
+        let cellViewModel = newsViewModel?.items?[indexPath.row]
+        let addFavouritesAction = UIContextualAction(style: .normal, title: nil) { action, view, completion in
+            RealmManager.shared.write(cellViewModel)
+            completion(true)
+        }
+        addFavouritesAction.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)
+        if RealmManager.shared.isObjectInRelm(url: cellViewModel?.url ?? "") {
+            addFavouritesAction.image = UIImage(systemName: "bookmark.fill", withConfiguration: config)?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        } else {
+            addFavouritesAction.image = UIImage(systemName: "bookmark", withConfiguration: config)?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        }
+        return UISwipeActionsConfiguration(actions: [addFavouritesAction])
     }
 }

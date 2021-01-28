@@ -27,7 +27,7 @@ class NewsCell: UITableViewCell {
     
     func set(newsModel: News.Item?) {
         titleLabel.text = newsModel?.title
-        descriptionLabel.text = newsModel?.description?.htmlToString
+        descriptionLabel.text = newsModel?.description
         dateLabel.text = newsModel?.publishedAt
         
         if let stringUrl = newsModel?.urlToImage, let url = URL(string: stringUrl) {

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>495372021175-de6hjjhk9p4b3df47ld5dqekv7su2288.apps.googleusercontent.com</string>
+	<string>623166647801-18uf280jojq767i10rjdk7dma4amgmqa.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.495372021175-de6hjjhk9p4b3df47ld5dqekv7su2288</string>
+	<string>com.googleusercontent.apps.623166647801-18uf280jojq767i10rjdk7dma4amgmqa</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAbE4LMV56QrXsLstZK1bwnuZM8_IqKHQo</string>
+	<string>AIzaSyApihqeVQL39a3H8_gnic4K-xHff16tBkU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>495372021175</string>
+	<string>623166647801</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>TiovZhen.News</string>
 	<key>PROJECT_ID</key>
-	<string>titov-news</string>
+	<string>titonewsapp</string>
 	<key>STORAGE_BUCKET</key>
-	<string>titov-news.appspot.com</string>
+	<string>titonewsapp.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:495372021175:ios:0d73de013e6ae7c0018c32</string>
+	<string>1:623166647801:ios:769414f6cae52980486128</string>
 </dict>
 </plist>
