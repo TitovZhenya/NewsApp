@@ -194,13 +194,18 @@ extension NewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large)
-        let cellViewModel = newsViewModel?.items?[indexPath.row]
+        guard let cellViewModel = newsViewModel?.items?[indexPath.row],
+              let url = cellViewModel.url else { return nil }
         let addFavouritesAction = UIContextualAction(style: .normal, title: nil) { action, view, completion in
-            RealmManager.shared.write(cellViewModel)
+            if RealmManager.shared.findRealmObject(by: url) != nil {
+                RealmManager.shared.delete(objectField: url)
+            } else {
+                RealmManager.shared.write(cellViewModel)
+            }
             completion(true)
         }
         addFavouritesAction.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)
-        if (RealmManager.shared.findRealmObject(by: cellViewModel?.url ?? "") != nil) {
+        if (RealmManager.shared.findRealmObject(by: url) != nil) {
             addFavouritesAction.image = UIImage(systemName: "bookmark.fill", withConfiguration: config)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         } else {
             addFavouritesAction.image = UIImage(systemName: "bookmark", withConfiguration: config)?.withTintColor(.black, renderingMode: .alwaysOriginal)
