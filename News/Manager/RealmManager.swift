@@ -14,9 +14,9 @@ class RealmManager {
         }
     }
     
-    func fetch<T: Object>() -> [T] {
+    func fetch() -> [NewsRealmModel] {
         let userId = FirebaseManager.shared.getUserId()
-        let objects = realm.objects(T.self).filter("userId = %@", userId)
+        let objects = realm.objects(NewsRealmModel.self).filter("userId = %@", userId)
         return Array(objects)
     }
     
@@ -44,18 +44,14 @@ class RealmManager {
     }
     
     func update(_ model: News.Item?) {
-        let realmModel = NewsRealmModel()
-        realmModel.userId = FirebaseManager.shared.getUserId()
-        realmModel.title = model?.title ?? ""
-        realmModel.desc = model?.description ?? ""
-        realmModel.url = model?.url ?? ""
-        realmModel.urlToImage = model?.urlToImage ?? ""
-        realmModel.publishedAt = model?.publishedAt ?? ""
-        realmModel.note = model?.note ?? ""
-        add(realmModel)
+        guard let url = model?.url else { return }
+        let object = findRealmObject(by: url)
+        try! realm.write {
+            object!.note = model?.note ?? ""
+        }
     }
     
-    func findRealmObject(by url: String) -> Object? {
+    func findRealmObject(by url: String) -> NewsRealmModel? {
         let userId = FirebaseManager.shared.getUserId()
         let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, userId).first
         if object != nil {

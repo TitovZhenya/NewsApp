@@ -125,7 +125,7 @@ extension BookmarksViewController: UITableViewDelegate {
         self.present(webVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large)
         let removeFavouritesAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completion in
             guard let self = self else { return }
@@ -141,13 +141,15 @@ extension BookmarksViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [removeFavouritesAction])
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large)
         
         guard let cellViewModel = favouritesNewsModel?[indexPath.row] else { return nil }
+        let favouriteNotesViewController = FavouriteNotesViewController()
         let readNoteAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completion in
             guard let self = self else { return }
-            self.createNewsNote(to: cellViewModel, indexPath: indexPath.row)
+            favouriteNotesViewController.modalPresentationStyle = .fullScreen
+            self.present(favouriteNotesViewController, animated: true, completion: nil)
             completion(true)
         }
         readNoteAction.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)

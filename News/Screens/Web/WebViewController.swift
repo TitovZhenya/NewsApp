@@ -6,6 +6,7 @@ class WebViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var toolBar: UIToolbar!
     @IBOutlet private weak var favouritesButton: UIBarButtonItem!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
     
     var lastOffsetY: CGFloat = 0
     
@@ -39,6 +40,9 @@ class WebViewController: UIViewController {
     
     private func setUpElements() {
         self.activityIndicator.hidesWhenStopped = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
     }
     
     private func setUpObservation() {
@@ -67,7 +71,7 @@ class WebViewController: UIViewController {
         }
     }
     
-    @IBAction func dismissViewAction() {
+    @IBAction func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
     
