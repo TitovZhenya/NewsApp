@@ -11,6 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookmarksViewController" customModule="News" customModuleProvider="target">
             <connections>
+                <outlet property="navigationBar" destination="7cF-Rp-RsA" id="Ybf-ld-1zM"/>
+                <outlet property="noResultsStackView" destination="Mtp-jJ-67e" id="uIY-dZ-ldA"/>
+                <outlet property="passwordButton" destination="fSX-AW-4sy" id="6f9-BB-wpW"/>
+                <outlet property="removeNoteButton" destination="lFt-xN-2IU" id="pgP-sJ-5Q9"/>
                 <outlet property="table" destination="AF3-GQ-IlW" id="TTS-b8-8yU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,30 +36,91 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AF3-GQ-IlW">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="Fxz-iF-16s"/>
-                        <outlet property="delegate" destination="-1" id="zly-q7-Pqc"/>
-                    </connections>
-                </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FGw-Jx-XVB">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6N-fu-gh1">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                            <subviews>
+                                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cF-Rp-RsA">
+                                    <rect key="frame" x="0.0" y="56" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textAttributes key="titleTextAttributes">
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </textAttributes>
+                                    <items>
+                                        <navigationItem title="Bookmarks" id="gko-x1-aRJ">
+                                            <barButtonItem key="leftBarButtonItem" id="lFt-xN-2IU">
+                                                <connections>
+                                                    <action selector="removeNotePassword:" destination="-1" id="gaS-u4-yU5"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem key="rightBarButtonItem" title="Item" image="lock.open" catalog="system" id="fSX-AW-4sy">
+                                                <connections>
+                                                    <action selector="lockAction:" destination="-1" id="h3t-sS-6Ye"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="A7k-CU-lGc"/>
+                            </constraints>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AF3-GQ-IlW">
+                            <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="Fxz-iF-16s"/>
+                                <outlet property="delegate" destination="-1" id="zly-q7-Pqc"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                </stackView>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mtp-jJ-67e">
+                    <rect key="frame" x="82" y="361" width="250" height="184.5"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yn4-kS-fD3">
+                            <rect key="frame" x="75" y="0.0" width="100" height="100"/>
+                            <color key="tintColor" red="0.396078431372549" green="0.51372549019607838" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="tMk-EO-3rC"/>
+                                <constraint firstAttribute="width" constant="100" id="vOs-NN-YfX"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get quick access to the news by adding them to your favourites" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYt-zG-XeB">
+                            <rect key="frame" x="0.0" y="120" width="250" height="64.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" red="0.396078431372549" green="0.51372549019607838" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="G6x-7s-Dfc"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cyx-Au-T0O" secondAttribute="trailing" id="42X-uf-O4b"/>
                 <constraint firstAttribute="bottom" secondItem="cyx-Au-T0O" secondAttribute="bottom" id="A1r-RP-PMg"/>
-                <constraint firstItem="AF3-GQ-IlW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FNK-e3-ql6"/>
+                <constraint firstItem="FGw-Jx-XVB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ggu-BO-j0x"/>
                 <constraint firstItem="cyx-Au-T0O" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="InZ-nw-Nkj"/>
+                <constraint firstAttribute="bottom" secondItem="FGw-Jx-XVB" secondAttribute="bottom" id="O2H-e5-nlY"/>
+                <constraint firstItem="Mtp-jJ-67e" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Szw-Y3-L2C"/>
                 <constraint firstItem="cyx-Au-T0O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bHq-P3-xrV"/>
-                <constraint firstItem="AF3-GQ-IlW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bob-vB-5e9"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AF3-GQ-IlW" secondAttribute="trailing" id="fG4-O0-lvx"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AF3-GQ-IlW" secondAttribute="bottom" id="kCf-ox-rZe"/>
+                <constraint firstItem="FGw-Jx-XVB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kCF-11-MNi"/>
+                <constraint firstItem="Mtp-jJ-67e" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="mBW-F3-YR0"/>
+                <constraint firstItem="FGw-Jx-XVB" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="nbQ-oi-CUt"/>
             </constraints>
             <point key="canvasLocation" x="31.884057971014496" y="88.392857142857139"/>
         </view>
     </objects>
     <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="lock.open" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

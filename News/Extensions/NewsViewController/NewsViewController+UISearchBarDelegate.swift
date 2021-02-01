@@ -8,6 +8,7 @@ extension NewsViewController: UISearchBarDelegate {
             return
         }
         guard let text = trimmingText else { return }
+        NewsManager.shared.removeParameters()
         switch segmentControl.selectedSegmentIndex {
         case FetchPath.everything.rawValue:
             NewsManager.shared.search = text

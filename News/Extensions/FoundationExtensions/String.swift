@@ -1,16 +1,13 @@
 import UIKit
 
 extension String {
-    func toDate(withFormat format: String) -> String {
+    func toDate() -> String {
         let dateFormatter = DateFormatter()
-        let formatLength = format.count
-        if self.count < formatLength {
-            dateFormatter.dateFormat = format
-        } else {
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ"
-        }
-        guard let date = dateFormatter.date(from: self) else {
-          return ""
+        let indexes = self.index(self.startIndex, offsetBy: 16)
+        let formattedDate = String(self.prefix(upTo: indexes))
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        guard let date = dateFormatter.date(from: formattedDate) else {
+          return "Error"
         }
         dateFormatter.dateFormat = "dd MMM y HH:mm"
         let newDate = dateFormatter.string(from: date)

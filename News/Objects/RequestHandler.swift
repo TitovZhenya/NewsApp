@@ -5,7 +5,7 @@ import SwiftyJSON
 struct RequestHandler {
     private let hostUrl: String
     private let path: String
-    private let headers: HTTPHeaders = ["X-Api-Key" : "227455a1d31c41968aed5e863f925693"]
+    private let headers: HTTPHeaders = ["X-Api-Key" : "275c9975157c45ca88f7a5f9dcda48c8"]
     private let method: HTTPMethod
     private var parameters: Parameters?
     //MARK: API KEY - 275c9975157c45ca88f7a5f9dcda48c8 - Zhenya

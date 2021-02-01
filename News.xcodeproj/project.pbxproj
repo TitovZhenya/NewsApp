@@ -30,7 +30,6 @@
 		A86CF22825A5F15800B192B7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CF22725A5F15800B192B7 /* Colors.swift */; };
 		A86CF23425A5F94400B192B7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CF23225A5F94400B192B7 /* SignUpViewController.swift */; };
 		A86CF23525A5F94400B192B7 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A86CF23325A5F94400B192B7 /* SignUpViewController.xib */; };
-		A86CF23C25A6133400B192B7 /* UITextField+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CF23B25A6133400B192B7 /* UITextField+DoneButton.swift */; };
 		A86CF24025A619E100B192B7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CF23F25A619E100B192B7 /* Utilities.swift */; };
 		A86CF24325A6275600B192B7 /* SignUpViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CF24225A6275600B192B7 /* SignUpViewController+UITextFieldDelegate.swift */; };
 		A86D353725AB474300525EA6 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86D353525AB474300525EA6 /* NewsCell.swift */; };
@@ -54,13 +53,17 @@
 		A8770AA125B46D190036D5A9 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8770A9F25B46D190036D5A9 /* FilterCell.xib */; };
 		A8770AA925B483A10036D5A9 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8770AA825B483A10036D5A9 /* Api.swift */; };
 		A8770AAC25B499AD0036D5A9 /* SourceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8770AAB25B499AD0036D5A9 /* SourceResult.swift */; };
+		A87BF4B425C6CB350004E3E5 /* PasswordAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87BF4B325C6CB350004E3E5 /* PasswordAlertHelper.swift */; };
 		A87F48D525C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F48D425C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift */; };
 		A88413B725A86D9A00035D5C /* SceneDelegate+AuthFirebaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88413B625A86D9A00035D5C /* SceneDelegate+AuthFirebaseDelegate.swift */; };
 		A88413BB25A8B7FE00035D5C /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88413BA25A8B7FE00035D5C /* RequestHandler.swift */; };
 		A887608925C433560004E378 /* FavouriteNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A887608725C433560004E378 /* FavouriteNotesViewController.swift */; };
 		A887608A25C433560004E378 /* FavouriteNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A887608825C433560004E378 /* FavouriteNotesViewController.xib */; };
+		A888807025C5977F0079FE79 /* SettingsRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888806F25C5977F0079FE79 /* SettingsRealmModel.swift */; };
+		A888808B25C59BE90079FE79 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888808A25C59BE90079FE79 /* SettingsModel.swift */; };
 		A88B6F3E25A8D8FD00B10EBC /* NewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B6F3D25A8D8FD00B10EBC /* NewsResult.swift */; };
 		A88B6F4325A8DD1700B10EBC /* Codable+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B6F4225A8DD1700B10EBC /* Codable+JSON.swift */; };
+		A890FC2925C7104D003B1FA9 /* PasswordAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890FC2825C7104D003B1FA9 /* PasswordAction.swift */; };
 		A89CD25025A7633500D44034 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CD24E25A7633500D44034 /* NewsViewController.swift */; };
 		A89CD25125A7633500D44034 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89CD24F25A7633500D44034 /* NewsViewController.xib */; };
 		A89CD26B25A7909300D44034 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89CD26A25A7909300D44034 /* FirebaseManager.swift */; };
@@ -69,6 +72,9 @@
 		A8A303F625ACA8030033C063 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A303F525ACA8030033C063 /* String.swift */; };
 		A8A7AC1425BF70F500973171 /* NewsViewController+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A7AC1325BF70F500973171 /* NewsViewController+CLLocationManagerDelegate.swift */; };
 		A8ABC12425A8FD4A00837F0C /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABC12325A8FD4A00837F0C /* NewsManager.swift */; };
+		A8B6AE8225C6E44800C44404 /* FavouriteNotesViewController+PasswordAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6AE8125C6E44800C44404 /* FavouriteNotesViewController+PasswordAlertDelegate.swift */; };
+		A8B6AE8525C6F10700C44404 /* PasswordAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6AE8425C6F10700C44404 /* PasswordAlertDelegate.swift */; };
+		A8B6AE8925C6F17F00C44404 /* BookmarksViewController+PasswordAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6AE8825C6F17F00C44404 /* BookmarksViewController+PasswordAlertDelegate.swift */; };
 		A8CC927625B863E300130EFA /* NewsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CC927525B863E300130EFA /* NewsViewController+UISearchBarDelegate.swift */; };
 		A8E7B93C25B8A4D2006D1A4B /* ApiParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E7B93B25B8A4D2006D1A4B /* ApiParameters.swift */; };
 		A8E7B93F25B8B7BE006D1A4B /* TabBarViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E7B93E25B8B7BE006D1A4B /* TabBarViewControllers.swift */; };
@@ -106,7 +112,6 @@
 		A86CF22725A5F15800B192B7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A86CF23225A5F94400B192B7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A86CF23325A5F94400B192B7 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		A86CF23B25A6133400B192B7 /* UITextField+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+DoneButton.swift"; sourceTree = "<group>"; };
 		A86CF23F25A619E100B192B7 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A86CF24225A6275600B192B7 /* SignUpViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		A86D353525AB474300525EA6 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -132,13 +137,17 @@
 		A8770A9F25B46D190036D5A9 /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		A8770AA825B483A10036D5A9 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		A8770AAB25B499AD0036D5A9 /* SourceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceResult.swift; sourceTree = "<group>"; };
+		A87BF4B325C6CB350004E3E5 /* PasswordAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAlertHelper.swift; sourceTree = "<group>"; };
 		A87F48D425C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksViewController+NewsCellDelegate.swift"; sourceTree = "<group>"; };
 		A88413B625A86D9A00035D5C /* SceneDelegate+AuthFirebaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+AuthFirebaseDelegate.swift"; sourceTree = "<group>"; };
 		A88413BA25A8B7FE00035D5C /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		A887608725C433560004E378 /* FavouriteNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteNotesViewController.swift; sourceTree = "<group>"; };
 		A887608825C433560004E378 /* FavouriteNotesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteNotesViewController.xib; sourceTree = "<group>"; };
+		A888806F25C5977F0079FE79 /* SettingsRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRealmModel.swift; sourceTree = "<group>"; };
+		A888808A25C59BE90079FE79 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		A88B6F3D25A8D8FD00B10EBC /* NewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResult.swift; sourceTree = "<group>"; };
 		A88B6F4225A8DD1700B10EBC /* Codable+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+JSON.swift"; sourceTree = "<group>"; };
+		A890FC2825C7104D003B1FA9 /* PasswordAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAction.swift; sourceTree = "<group>"; };
 		A89CD24E25A7633500D44034 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		A89CD24F25A7633500D44034 /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
 		A89CD26A25A7909300D44034 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -147,6 +156,9 @@
 		A8A303F525ACA8030033C063 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A8A7AC1325BF70F500973171 /* NewsViewController+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
 		A8ABC12325A8FD4A00837F0C /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
+		A8B6AE8125C6E44800C44404 /* FavouriteNotesViewController+PasswordAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteNotesViewController+PasswordAlertDelegate.swift"; sourceTree = "<group>"; };
+		A8B6AE8425C6F10700C44404 /* PasswordAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAlertDelegate.swift; sourceTree = "<group>"; };
+		A8B6AE8825C6F17F00C44404 /* BookmarksViewController+PasswordAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksViewController+PasswordAlertDelegate.swift"; sourceTree = "<group>"; };
 		A8CC927525B863E300130EFA /* NewsViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		A8E7B93B25B8A4D2006D1A4B /* ApiParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiParameters.swift; sourceTree = "<group>"; };
 		A8E7B93E25B8B7BE006D1A4B /* TabBarViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllers.swift; sourceTree = "<group>"; };
@@ -213,6 +225,7 @@
 				A863796525BAF27A00BC25FB /* FilterViewDelegate.swift */,
 				A86C869625BF2E60008CF1C8 /* OnBoardingControllerDelegate.swift */,
 				A86C86BF25BF3B21008CF1C8 /* OnBoardingPageViewDelegate.swift */,
+				A8B6AE8425C6F10700C44404 /* PasswordAlertDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -260,14 +273,14 @@
 			path = FilterCell;
 			sourceTree = "<group>";
 		};
-		A863797225BB3EB900BC25FB /* Welcome */ = {
+		A863797225BB3EB900BC25FB /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
 				A8EAA80625BDE79D0054403D /* OnBoardingPageViewController.swift */,
 				A86C86CE25BF41DC008CF1C8 /* OnBoardingFirstViewController */,
 				A86C86D025BF41ED008CF1C8 /* OnBoardingSecondViewController */,
 			);
-			path = Welcome;
+			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 		A8680D9425B5B4FF00DE6A6F /* Web */ = {
@@ -284,7 +297,6 @@
 			children = (
 				A809922C25B6303500DB7958 /* UITableView.swift */,
 				A8A0593B25B37F5D007EA77A /* UITableViewCell.swift */,
-				A86CF23B25A6133400B192B7 /* UITextField+DoneButton.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -405,6 +417,7 @@
 				A86C86A425BF3A06008CF1C8 /* AuthController */,
 				A86C86A025BF39E1008CF1C8 /* NewsViewController */,
 				A87F48D325C1C06D005D049A /* BookmarksViewController */,
+				A8B6AE8025C6E42400C44404 /* FavouriteNotesViewController */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -417,6 +430,7 @@
 				A80AA42A25ACCCD6006F77B5 /* ImageViewWeb.swift */,
 				A863796F25BB10CC00BC25FB /* LinearGradient.swift */,
 				A86C869225BF28D0008CF1C8 /* OnBoardingLogic.swift */,
+				A87BF4B325C6CB350004E3E5 /* PasswordAlertHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -490,7 +504,7 @@
 		A871F19C25A34FE800FF34F5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A863797225BB3EB900BC25FB /* Welcome */,
+				A863797225BB3EB900BC25FB /* OnBoarding */,
 				A871F19125A34F4F00FF34F5 /* Start */,
 				A871F19D25A34FF900FF34F5 /* SignIn */,
 				A871F19E25A3500900FF34F5 /* SignUp */,
@@ -529,6 +543,7 @@
 				A809923325B6377D00DB7958 /* FetchPath.swift */,
 				A8E7B93B25B8A4D2006D1A4B /* ApiParameters.swift */,
 				A8E7B93E25B8B7BE006D1A4B /* TabBarViewControllers.swift */,
+				A890FC2825C7104D003B1FA9 /* PasswordAction.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -587,6 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				A87F48D425C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift */,
+				A8B6AE8825C6F17F00C44404 /* BookmarksViewController+PasswordAlertDelegate.swift */,
 			);
 			path = BookmarksViewController;
 			sourceTree = "<group>";
@@ -614,6 +630,8 @@
 				A88B6F3D25A8D8FD00B10EBC /* NewsResult.swift */,
 				A8770AAB25B499AD0036D5A9 /* SourceResult.swift */,
 				A8FB25BD25C1982800507CDD /* NewsRealmModel.swift */,
+				A888806F25C5977F0079FE79 /* SettingsRealmModel.swift */,
+				A888808A25C59BE90079FE79 /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -660,6 +678,14 @@
 				A8FB25D925C19A7800507CDD /* RealmManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		A8B6AE8025C6E42400C44404 /* FavouriteNotesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A8B6AE8125C6E44800C44404 /* FavouriteNotesViewController+PasswordAlertDelegate.swift */,
+			);
+			path = FavouriteNotesViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -797,12 +823,15 @@
 				A8FB25DA25C19A7800507CDD /* RealmManager.swift in Sources */,
 				A84EB06A25B77B2B00241B05 /* WebViewController.swift in Sources */,
 				A87F48D525C1C0AA005D049A /* BookmarksViewController+NewsCellDelegate.swift in Sources */,
+				A888807025C5977F0079FE79 /* SettingsRealmModel.swift in Sources */,
 				A88413B725A86D9A00035D5C /* SceneDelegate+AuthFirebaseDelegate.swift in Sources */,
 				A8CC927625B863E300130EFA /* NewsViewController+UISearchBarDelegate.swift in Sources */,
 				A871F17C25A34E0000FF34F5 /* AppDelegate.swift in Sources */,
 				A8EAA80825BDE79D0054403D /* OnBoardingPageViewController.swift in Sources */,
 				A86C86C825BF3CEF008CF1C8 /* OnBoardingPageViewController+OnBoardingControllerDelegate.swift in Sources */,
+				A8B6AE8525C6F10700C44404 /* PasswordAlertDelegate.swift in Sources */,
 				A86CF24325A6275600B192B7 /* SignUpViewController+UITextFieldDelegate.swift in Sources */,
+				A87BF4B425C6CB350004E3E5 /* PasswordAlertHelper.swift in Sources */,
 				A8770AA025B46D190036D5A9 /* FilterCell.swift in Sources */,
 				A89CD26B25A7909300D44034 /* FirebaseManager.swift in Sources */,
 				A86CF22825A5F15800B192B7 /* Colors.swift in Sources */,
@@ -814,7 +843,9 @@
 				A871F19725A34F9E00FF34F5 /* StartViewController.swift in Sources */,
 				A809922D25B6303500DB7958 /* UITableView.swift in Sources */,
 				A88B6F3E25A8D8FD00B10EBC /* NewsResult.swift in Sources */,
+				A890FC2925C7104D003B1FA9 /* PasswordAction.swift in Sources */,
 				A8770A9325B45B4B0036D5A9 /* FilterViewController.swift in Sources */,
+				A8B6AE8225C6E44800C44404 /* FavouriteNotesViewController+PasswordAlertDelegate.swift in Sources */,
 				A8680DA825B5D8D900DE6A6F /* NewsFilter.swift in Sources */,
 				A871F17E25A34E0000FF34F5 /* SceneDelegate.swift in Sources */,
 				A86C869725BF2E60008CF1C8 /* OnBoardingControllerDelegate.swift in Sources */,
@@ -823,13 +854,14 @@
 				A86C869325BF28D1008CF1C8 /* OnBoardingLogic.swift in Sources */,
 				A89CD25025A7633500D44034 /* NewsViewController.swift in Sources */,
 				A8770A9A25B45B760036D5A9 /* BookmarksViewController.swift in Sources */,
+				A8B6AE8925C6F17F00C44404 /* BookmarksViewController+PasswordAlertDelegate.swift in Sources */,
 				A8713ACA25A4BD0600A69A79 /* SignInViewController+UITextFieldDelegate.swift in Sources */,
 				A8A303F625ACA8030033C063 /* String.swift in Sources */,
-				A86CF23C25A6133400B192B7 /* UITextField+DoneButton.swift in Sources */,
 				A8ABC12425A8FD4A00837F0C /* NewsManager.swift in Sources */,
 				A8770AAC25B499AD0036D5A9 /* SourceResult.swift in Sources */,
 				A86D353725AB474300525EA6 /* NewsCell.swift in Sources */,
 				A871F21025A36FF800FF34F5 /* SignInViewController.swift in Sources */,
+				A888808B25C59BE90079FE79 /* SettingsModel.swift in Sources */,
 				A863796925BAF29300BC25FB /* AuthFirebaseDelegate.swift in Sources */,
 				A88B6F4325A8DD1700B10EBC /* Codable+JSON.swift in Sources */,
 				A8EAA81325BDE98F0054403D /* OnBoardingFirstViewController.swift in Sources */,

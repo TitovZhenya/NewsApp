@@ -1,99 +1,89 @@
 import UIKit
 import RealmSwift
+import LocalAuthentication
 
 class BookmarksViewController: UIViewController {
     
     @IBOutlet private(set) weak var table: UITableView!
-    private var visualEffectView: UIVisualEffectView!
-    private var noteView: UIView!
-    private var passwordButton: UIButton!
-    private var noteTextView: UITextView!
+    @IBOutlet private weak var passwordButton: UIBarButtonItem!
+    @IBOutlet private weak var removeNoteButton: UIBarButtonItem!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
+    @IBOutlet private weak var noResultsStackView: UIStackView!
+    private var alertController: UIAlertController!
+    
+    private(set) var passwordAlertHelper: PasswordAlertHelper!
     
     private(set) var favouritesNewsModel: [News.Item]?
+    private(set) var userSettingsModel: SettingsModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpElements()
+        setSettingsRealmModel()
+        lockNotes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setUpModel()
+        setSettingsRealmModel()
+        setNewsRealmModel()
     }
-    
+
     private func setUpElements() {
         table.separatorStyle = .none
         table.backgroundColor = .clear
-        self.title = "Bookmarks"
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
         table.register(UINib(nibName: NewsCell.reuseIndetifier, bundle: nil), forCellReuseIdentifier: NewsCell.reuseIndetifier)
+        passwordAlertHelper = PasswordAlertHelper()
+        passwordAlertHelper.delegate = self
     }
     
-    private func setUpModel() {
-        let favouritesNews: [NewsRealmModel] = RealmManager.shared.fetch()
+    private func setNewsRealmModel() {
+        let favouritesNews: Results<NewsRealmModel> = RealmManager.shared.fetch()
         favouritesNewsModel = favouritesNews.map { News.Item(realmModel: $0) }
+        noResultsStackView.isHidden = favouritesNewsModel?.count == 0 ? false : true
         
         DispatchQueue.main.async {
             self.table.reloadData()
         }
-        
-        print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
     }
     
-    private func createNewsNote(to model: News.Item, indexPath: Int) {
-        //add blur effect
-        let blurEffect = UIBlurEffect(style: .regular)
-        let visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        visualEffectView.frame = self.view.frame
-        self.visualEffectView = visualEffectView
-        
-        //add note view
-        let noteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: self.view.frame.height / 4))
-        noteView.center = self.view.center
-        noteView.backgroundColor = .white
-        noteView.layer.cornerRadius = 15
-        noteView.clipsToBounds = true
-        self.noteView = noteView
-        
-        //animate blur effect + note view
-        UIView.transition(with: self.view, duration: 0.4, options: [.transitionCrossDissolve], animations: {
-            self.view.addSubview(visualEffectView)
-            self.view.addSubview(noteView)
-        }, completion: nil)
-        
-        //create exit button
-        let closeButtonImage = UIImage(systemName: "xmark")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        let closeButton = UIButton(frame: CGRect(x: noteView.bounds.maxX - 35, y: 5, width: 30, height: 30))
-        closeButton.setImage(closeButtonImage, for: .normal)
-        closeButton.addTarget(self, action: #selector(self.closeNote), for: .touchUpInside)
-        closeButton.tag = indexPath
-        noteView.addSubview(closeButton)
-        
-        //create password button
-        let lockButtonImage = UIImage(systemName: "lock.open")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        let passwordButton = UIButton(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-        passwordButton.setImage(lockButtonImage, for: .normal)
-        noteView.addSubview(passwordButton)
-        self.passwordButton = passwordButton
-        
-        //create text view
-        let textView = UITextView(frame: CGRect(x: 5, y: 35, width: noteView.frame.width, height: noteView.frame.height - 35))
-        textView.text = model.note
-        noteView.addSubview(textView)
-        self.noteTextView = textView
+    func setSettingsRealmModel() {
+        let settingsRealmModel: Results<SettingsRealmModel> = RealmManager.shared.fetch()
+        guard let realmModel = settingsRealmModel.first else {
+            userSettingsModel = SettingsModel()
+            removeNoteButton.isEnabled = false
+            removeNoteButton.image = nil
+            passwordButton.image = UIImage(systemName: "lock.open")
+            return
+        }
+        userSettingsModel = SettingsModel(realmModel: realmModel)
+        passwordButton.image = realmModel.isLocked ? UIImage(systemName: "lock") : UIImage(systemName: "lock.open")
+        removeNoteButton.isEnabled = true
+        removeNoteButton.image = UIImage(systemName: "lock.slash")
     }
     
-    @objc private func closeNote(_ sender: UIButton) {
-        UIView.transition(with: self.view, duration: 0.4, options: [.transitionCrossDissolve], animations: {
-            self.visualEffectView.removeFromSuperview()
-            self.noteView.removeFromSuperview()
-        }, completion: nil)
-        var newsModel = favouritesNewsModel?[sender.tag]
-        newsModel?.note = noteTextView.text
-        RealmManager.shared.update(newsModel)
-        self.setUpModel()
+    private func lockNotes() {
+        userSettingsModel?.isLocked = true
+        RealmManager.shared.write(self.userSettingsModel)
+        setSettingsRealmModel()
+    }
+  
+    @IBAction func lockAction(_ sender: UIBarButtonItem) {
+        guard let userSettingsModel = userSettingsModel else { return }
+        if userSettingsModel.password == nil {
+            passwordAlertHelper.createPassword()
+        } else {
+            passwordAlertHelper.lockNote(userSettingsModel.isLocked)
+        }
+    }
+    
+    @IBAction func removeNotePassword(_ sender: UIBarButtonItem) {
+        passwordAlertHelper.deletePassword()
     }
 }
 
@@ -131,9 +121,10 @@ extension BookmarksViewController: UITableViewDelegate {
             guard let self = self else { return }
             let cellViewModel = self.favouritesNewsModel?[indexPath.row]
             guard let url = cellViewModel?.url else { return }
-            RealmManager.shared.delete(objectField: url)
+            RealmManager.shared.deleteNews(url)
             self.favouritesNewsModel?.remove(at: indexPath.row)
-            self.table.deleteRows(at: [indexPath], with: .left)
+            self.table.deleteRows(at: [indexPath], with: .right)
+            self.noResultsStackView.isHidden = self.favouritesNewsModel?.count == 0 ? false : true
             completion(true)
         }
         removeFavouritesAction.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)
@@ -145,7 +136,7 @@ extension BookmarksViewController: UITableViewDelegate {
         let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large)
         
         guard let cellViewModel = favouritesNewsModel?[indexPath.row] else { return nil }
-        let favouriteNotesViewController = FavouriteNotesViewController()
+        let favouriteNotesViewController = FavouriteNotesViewController(cellViewModel)
         let readNoteAction = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completion in
             guard let self = self else { return }
             favouriteNotesViewController.modalPresentationStyle = .fullScreen

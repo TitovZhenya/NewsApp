@@ -16,11 +16,6 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         setUpElements()
-        addKeyboardObserver()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     private func setUpElements() {        
@@ -34,42 +29,11 @@ class SignInViewController: UIViewController {
         
         for textField in textFields {
             textFieldDelegate(textField)
-            textField.addDoneButton()
         }
     }
         
     private func textFieldDelegate(_ textField: UITextField){
         textField.delegate = self
-    }
-    
-    //MARK: work with keyboard obserkver
-    private func addKeyboardObserver(){
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillChange),
-                                               name: UIResponder.keyboardDidShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillChange),
-                                               name: UIResponder.keyboardDidHideNotification,
-                                               object: nil)
-    }
-    
-    @objc
-    private func keyboardWillChange(notification: Notification){
-        guard let userInfo = notification.userInfo else { return }
-        let kbFrameSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        if notification.name == UIResponder.keyboardDidShowNotification{
-            (self.view as! UIScrollView).contentSize = CGSize(width: self.view.bounds.size.width,
-                                                              height: self.view.bounds.size.height + kbFrameSize.height / 2)
-            (self.view as! UIScrollView).scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbFrameSize.height - 50, right: 0)
-        } else {
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                guard let size = self?.view.bounds.size else { return }
-                (self?.view as! UIScrollView).contentSize = CGSize(width: size.width,
-                                                                  height: size.height - kbFrameSize.height / 2)
-            }
-        }
     }
     
     //MARK: IBActions

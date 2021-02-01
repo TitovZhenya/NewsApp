@@ -1,12 +1,11 @@
 import UIKit
-import Kingfisher
 
 class NewsCell: UITableViewCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-    @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet private weak var newsImageView: ImageViewWeb!
     @IBOutlet private weak var newsCardView: UIView!
     
     weak var delegate: NewsCellDelegate?
@@ -36,14 +35,8 @@ class NewsCell: UITableViewCell {
         descriptionLabel.text = newsModel?.description
         dateLabel.text = newsModel?.publishedAt
         
-        if let stringUrl = newsModel?.urlToImage, let url = URL(string: stringUrl) {
-            newsImageView.kf.setImage(with: url,
-                                      placeholder: nil,
-                                      options: [
-                                        .loadDiskFileSynchronously,
-                                        .cacheOriginalImage
-                                      ],
-                                      completionHandler: nil)
+        if let stringUrl = newsModel?.urlToImage {
+            newsImageView.setImage(from: stringUrl)
             newsImageView.isHidden = false
         } else {
             newsImageView.isHidden = true

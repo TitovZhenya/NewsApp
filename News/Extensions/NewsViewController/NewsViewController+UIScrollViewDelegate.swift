@@ -3,9 +3,12 @@ import UIKit
 extension NewsViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y > scrollView.contentSize.height / 1.1 {
-            activityIndicator.isHidden = false
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+
+        if maximumOffset - currentOffset <= 10 {
             activityIndicator.startAnimating()
+            activityIndicator.isHidden = false
             switch segmentControl.selectedSegmentIndex {
             case FetchPath.everything.rawValue:
                 if setNextPage() {

@@ -1,15 +1,34 @@
 import UIKit
+import CoreLocation
 
 class StartViewController: UIViewController {
     
     @IBOutlet private weak var signInButton: UIButton!
     @IBOutlet private weak var signUpButton: UIButton!
     
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         FirebaseManager.shared.getSignInUser()
         setUpElements()
+        checkLocationServices()
+    }
+    
+    private func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            checkLocationAuthorization()
+        }
+    }
+    
+    private func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            break
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

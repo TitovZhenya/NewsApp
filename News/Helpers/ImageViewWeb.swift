@@ -4,11 +4,15 @@ let imageCache = NSCache<AnyObject, AnyObject>()
 
 class ImageViewWeb: UIImageView {
     
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
+    
     func setImage(from url: String) {
         image = nil
-
+        addActivityIndicator()
+        
         if let cachedImage = imageCache.object(forKey: url as AnyObject) as? UIImage {
-            self.image = cachedImage
+            image = cachedImage
+            activityIndicator.removeFromSuperview()
             return
         }
         
@@ -17,6 +21,15 @@ class ImageViewWeb: UIImageView {
             imageCache.setObject(image, forKey: url as AnyObject)
             
             self.image = image
+            self.activityIndicator.removeFromSuperview()
         }
+    }
+    
+    private func addActivityIndicator() {
+        addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }

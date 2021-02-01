@@ -1,10 +1,3 @@
-//
-//  Colors.swift
-//  News
-//
-//  Created by Titov Evgeniy on 6.01.21.
-//
-
 import UIKit
 
 struct Colors {

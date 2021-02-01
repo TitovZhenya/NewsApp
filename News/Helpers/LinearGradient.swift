@@ -10,12 +10,6 @@ class LinearGradient: UIView {
         }
     }
     
-//    @IBInspectable private var betweenColor: UIColor? {
-//        didSet {
-//            addGradientColors()
-//        }
-//    }
-    
     @IBInspectable private var endColor: UIColor? {
         didSet {
             addGradientColors()
@@ -45,7 +39,6 @@ class LinearGradient: UIView {
 
     private func addGradientColors() {
         guard let startColor = startColor,
-//              let betweenColor = betweenColor,
               let endColor = endColor
         else {
             return
@@ -53,5 +46,3 @@ class LinearGradient: UIView {
         gradient.colors = [startColor.cgColor, endColor.cgColor]
     }
 }
-
-//betweenColor.cgColor

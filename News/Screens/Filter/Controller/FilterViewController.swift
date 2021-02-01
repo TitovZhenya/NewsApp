@@ -87,7 +87,7 @@ extension FilterViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let cellFilter = filterViewModel[indexPath.row]
-        cell.set(filterModel: cellFilter)
+        cell.set(cellFilter.name)
         if (indexPath.row == filterViewModel.count - 1) {
             cell.separatorInset = UIEdgeInsets(top: 0, left: view.bounds.width, bottom: 0, right: 0);
         }

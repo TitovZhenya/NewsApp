@@ -8,21 +8,22 @@ class RealmManager {
     
     private lazy var realm = try! Realm()
     
+    private var userId = ""
+    
     private func add(_ object: Object) {
         try! realm.write {
             realm.add(object, update: .all)
         }
     }
     
-    func fetch() -> [NewsRealmModel] {
+    func fetch<T: Object>() -> Results<T> {
         let userId = FirebaseManager.shared.getUserId()
-        let objects = realm.objects(NewsRealmModel.self).filter("userId = %@", userId)
-        return Array(objects)
+        self.userId = userId
+        let objects = realm.objects(T.self).filter("userId = %@", userId)
+        return objects
     }
     
-    func delete(objectField url: String) {
-        let userId = FirebaseManager.shared.getUserId()
-        guard let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, userId).first else { return }
+    func deleteObject(_ object: Object) {
         try! realm.write {
             realm.delete(object)
         }
@@ -32,33 +33,63 @@ class RealmManager {
         let isAdded = findRealmObject(by: model?.url ?? "")
         if isAdded == nil {
             let realmModel = NewsRealmModel()
-            realmModel.userId = FirebaseManager.shared.getUserId()
             realmModel.title = model?.title ?? ""
             realmModel.desc = model?.description ?? ""
             realmModel.url = model?.url ?? ""
             realmModel.urlToImage = model?.urlToImage ?? ""
             realmModel.publishedAt = model?.publishedAt ?? ""
-            realmModel.note = model?.note ?? ""
             add(realmModel)
         }
     }
     
-    func update(_ model: News.Item?) {
-        guard let url = model?.url else { return }
-        let object = findRealmObject(by: url)
+    func write(_ model: SettingsModel?) {
+        guard let password = model?.password,
+              let isLocked = model?.isLocked else { return }
+        let realmModel = SettingsRealmModel()
+        realmModel.password = password
+        realmModel.isLocked = isLocked
+        add(realmModel)
+    }
+    
+    func deleteNews(_ url: String) {
+        guard let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, self.userId).first else { return }
+        deleteObject(object)
+    }
+    
+    func addNote(_ model: News.Item?, text: String) {
+        guard let url = model?.url,
+              let object = findRealmObject(by: url) else { return }
         try! realm.write {
-            object!.note = model?.note ?? ""
+            object.notes.append(text)
         }
+    }
+    
+    func updateNote(_ model: News.Item?, text: String, index: Int) {
+        guard let url = model?.url,
+              let object = findRealmObject(by: url) else { return }
+        try! realm.write {
+            object.notes[index] = text
+        }
+    }
+    
+    func deleteNote(_ model: News.Item?, index: Int) {
+        guard let url = model?.url,
+              let object = findRealmObject(by: url) else { return }
+        try! realm.write {
+            object.notes.remove(at: index)
+        }
+    }
+    
+    func deletePassword() {
+        guard let object = realm.objects(SettingsRealmModel.self).filter("userId = %@", self.userId).first else { return }
+        deleteObject(object)
     }
     
     func findRealmObject(by url: String) -> NewsRealmModel? {
         let userId = FirebaseManager.shared.getUserId()
-        let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, userId).first
-        if object != nil {
-            return object
-        } else {
-            return nil
-        }
+        self.userId = userId
+        let object = realm.objects(NewsRealmModel.self).filter("url = %@ AND userId = %@", url, userId).first ?? nil
+        return object
     }
     
     func configure() {

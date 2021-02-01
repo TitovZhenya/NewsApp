@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "padlock.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "padlock.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },

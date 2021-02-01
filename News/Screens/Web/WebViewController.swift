@@ -86,7 +86,7 @@ class WebViewController: UIViewController {
     @IBAction func addToFavouritesAction(_ sender: UIBarButtonItem) {
         guard let url = newsModel?.url else { return }
         if RealmManager.shared.findRealmObject(by: url) != nil {
-            RealmManager.shared.delete(objectField: url)
+            RealmManager.shared.deleteNews(url)
         } else {
             RealmManager.shared.write(newsModel)
         }

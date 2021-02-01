@@ -8,6 +8,8 @@ class NewsViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private(set) weak var searchStackView: UIStackView!
     @IBOutlet private(set) weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
+    @IBOutlet private weak var noResultsStackView: UIStackView!
     
     private(set) var locationManager = CLLocationManager()
     
@@ -16,54 +18,46 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpDelegate()
         setUpElements()
         checkLocationServices()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.tabBarController?.tabBar.isHidden = false
     }
     
     private func setUpElements() {
         table.separatorStyle = .none
         table.backgroundColor = .clear
-        self.title = "News"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(showSearchMenu))
-        segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
         table.register(UINib(nibName: NewsCell.reuseIndetifier, bundle: nil), forCellReuseIdentifier: NewsCell.reuseIndetifier)
-        searchBar.searchTextField.addDoneButton()
+        segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
         searchBar.backgroundColor = .clear
         activityIndicator.isHidden = true
+        let filterVC = self.tabBarController?
+            .viewControllers?[TabBarViewControllers.filterViewController.rawValue] as! FilterViewController
+        filterVC.delegate = self
+        locationManager.delegate = self
     }
     
     private func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             checkLocationAuthorization()
-        } else {
-            // error: turn on location
         }
     }
     
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
+        
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
         default:
             break
         }
-    }
-    
-    private func setUpDelegate() {
-        let filterVC = self.tabBarController?
-            .viewControllers?[TabBarViewControllers.filterViewController.rawValue] as! FilterViewController
-        filterVC.delegate = self
-        locationManager.delegate = self
     }
     
     func loadEverythingData() {
@@ -71,7 +65,7 @@ class NewsViewController: UIViewController {
         NewsManager.shared.removePages()
         NewsManager.shared.fetchEverythingNews { [weak self] result in
             guard let self = self else { return }
-            self.setModelData(result)
+            self.checkResult(result)
         }
     }
     
@@ -80,13 +74,26 @@ class NewsViewController: UIViewController {
         NewsManager.shared.removePages()
         NewsManager.shared.fetchTopHeadlinesNews { [weak self] result in
             guard let self = self else { return }
+            self.checkResult(result)
+        }
+    }
+    
+    private func checkResult(_ result: NewsResult?) {
+        if result != nil {
+            self.noResultsStackView.isHidden = result?.totalResults == 0 ? false : true
             self.setModelData(result)
+        } else {
+            self.noResultsStackView.isHidden = false
+            self.newsViewModel = nil
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
         }
     }
     
     private func setModelData(_ data: NewsResult?) {
         let resultArticles = data?.articles.map { newsItem -> News.Item in
-            let date = newsItem.publishedAt?.toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
+            let date = newsItem.publishedAt?.toDate()
             return News.Item(title: newsItem.title,
                              description: newsItem.description,
                              url: newsItem.url,
@@ -108,7 +115,7 @@ class NewsViewController: UIViewController {
     
     func loadPreviousNews(_ data: NewsResult?) {
         data?.articles.forEach { article in
-            let date = article.publishedAt?.toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
+            let date = article.publishedAt?.toDate()
             let newsItem = News.Item(title: article.title,
                                     description: article.description,
                                     url: article.url,
@@ -130,6 +137,7 @@ class NewsViewController: UIViewController {
             newsViewModel?.currentPage? = page
             return true
         }
+        activityIndicator.isHidden = true
         return false
     }
     
@@ -144,11 +152,11 @@ class NewsViewController: UIViewController {
         }
     }
     
-    @objc private func signOut(sender: UIBarButtonItem) {
+    @IBAction func signOut(sender: UIBarButtonItem) {
         FirebaseManager.shared.signOut()
     }
     
-    @objc private func showSearchMenu(sender: UIBarButtonItem) {
+    @IBAction func showSearchMenu(sender: UIBarButtonItem) {
         if searchStackView.isHidden {
             UIView.animate(withDuration: 0.3) { [weak self] in
                 guard let self = self else { return }
@@ -198,7 +206,7 @@ extension NewsViewController: UITableViewDelegate {
               let url = cellViewModel.url else { return nil }
         let addFavouritesAction = UIContextualAction(style: .normal, title: nil) { action, view, completion in
             if RealmManager.shared.findRealmObject(by: url) != nil {
-                RealmManager.shared.delete(objectField: url)
+                RealmManager.shared.deleteNews(url)
             } else {
                 RealmManager.shared.write(cellViewModel)
             }

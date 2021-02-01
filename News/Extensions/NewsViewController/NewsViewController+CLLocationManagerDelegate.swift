@@ -4,7 +4,7 @@ import CoreLocation
 extension NewsViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+       if let location = locations.first {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location) { placeMark, error in
                 if let placeMark = placeMark {
@@ -18,6 +18,6 @@ extension NewsViewController: CLLocationManagerDelegate {
                 }
             }
         }
-        locationManager.stopUpdatingLocation()
+        self.locationManager.stopUpdatingLocation()
     }
 }

@@ -22,7 +22,7 @@ class FilterCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    func set(filterModel: Source?) {
-        filterLabel.text = filterModel?.name
+    func set(_ text: String?) {
+        filterLabel.text = text
     }
 }

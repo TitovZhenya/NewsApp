@@ -7,8 +7,8 @@ class NewsRealmModel: Object {
     @objc dynamic var url: String = ""
     @objc dynamic var urlToImage: String = ""
     @objc dynamic var publishedAt: String = ""
-    @objc dynamic var userId: String = ""
-    @objc dynamic var note: String = ""
+    @objc dynamic var userId: String = FirebaseManager.shared.getUserId()
+    var notes = List<String>()
         
     override class func primaryKey() -> String? {
         return "id"

@@ -11,9 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavouriteNotesViewController" customModule="News" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="pio-uB-Emu" id="F8I-7k-Ns4"/>
+                <outlet property="closeButton" destination="Fpt-Eg-0Zz" id="boM-KI-jZX"/>
+                <outlet property="lockedNotesStackView" destination="02N-Bm-5AN" id="nv6-LW-Ps3"/>
                 <outlet property="navigationBar" destination="4Wv-GJ-Rcd" id="bCB-7i-zrU"/>
+                <outlet property="noteTextView" destination="vRE-4b-Rjb" id="sZa-Ha-tk9"/>
+                <outlet property="noteView" destination="6av-UL-mfS" id="9ag-QH-CKf"/>
                 <outlet property="table" destination="vVM-bS-XtU" id="Cam-64-ngl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="visualEffectView" destination="u7K-qg-eKu" id="85v-9f-7mJ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -34,13 +40,14 @@
                                         <navigationItem title="Notes" id="z8N-vA-uUz">
                                             <barButtonItem key="leftBarButtonItem" title="Close" id="Yqn-Y6-5dT">
                                                 <connections>
-                                                    <action selector="dismissController:" destination="-1" id="vlO-1X-fWA"/>
+                                                    <action selector="dismissViewController:" destination="-1" id="yrc-I6-I1K"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <rightBarButtonItems>
-                                                <barButtonItem title="Item" image="plus" catalog="system" id="pio-uB-Emu"/>
-                                                <barButtonItem title="Item" image="lock.open" catalog="system" id="sjV-bE-54L"/>
-                                            </rightBarButtonItems>
+                                            <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="pio-uB-Emu">
+                                                <connections>
+                                                    <action selector="addNote:" destination="-1" id="8mC-R1-UqW"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </navigationItem>
                                     </items>
                                 </navigationBar>
@@ -52,7 +59,7 @@
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vVM-bS-XtU">
                             <rect key="frame" x="0.0" y="108" width="414" height="788"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="RFA-WL-UEW"/>
                                 <outlet property="delegate" destination="-1" id="Bh3-kd-Z10"/>
@@ -60,21 +67,92 @@
                         </tableView>
                     </subviews>
                 </stackView>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="02N-Bm-5AN">
+                    <rect key="frame" x="79.5" y="406.5" width="255" height="93"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to unlock your notes?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWA-Yh-siy">
+                            <rect key="frame" x="0.0" y="0.0" width="255" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oo-UK-6Nw">
+                            <rect key="frame" x="103.5" y="49" width="48" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="WLm-3W-kf0"/>
+                            </constraints>
+                            <state key="normal" title="Unlock"/>
+                            <connections>
+                                <action selector="unlockNotes:" destination="-1" eventType="touchUpInside" id="96e-vR-wc0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7K-qg-eKu">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QCJ-RT-Vpm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6av-UL-mfS">
+                                <rect key="frame" x="100" y="300" width="214" height="296"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vRE-4b-Rjb">
+                                        <rect key="frame" x="10" y="30" width="194" height="256"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fpt-Eg-0Zz">
+                                        <rect key="frame" x="174" y="0.0" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="closeNote:" destination="-1" eventType="touchUpInside" id="qrm-yJ-155"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vRE-4b-Rjb" secondAttribute="trailing" constant="10" id="2sm-hz-xuL"/>
+                                    <constraint firstItem="vRE-4b-Rjb" firstAttribute="top" secondItem="6av-UL-mfS" secondAttribute="top" constant="30" id="5Ht-gu-TvB"/>
+                                    <constraint firstItem="vRE-4b-Rjb" firstAttribute="leading" secondItem="6av-UL-mfS" secondAttribute="leading" constant="10" id="88o-gh-rBD"/>
+                                    <constraint firstAttribute="bottom" secondItem="vRE-4b-Rjb" secondAttribute="bottom" constant="10" id="Skb-pK-Nly"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6av-UL-mfS" firstAttribute="leading" secondItem="QCJ-RT-Vpm" secondAttribute="leading" constant="100" id="7Pv-HS-eIa"/>
+                            <constraint firstItem="6av-UL-mfS" firstAttribute="top" secondItem="QCJ-RT-Vpm" secondAttribute="top" constant="300" id="Afa-eI-qoY"/>
+                            <constraint firstAttribute="bottom" secondItem="6av-UL-mfS" secondAttribute="bottom" constant="300" id="DsH-a0-Mbu"/>
+                            <constraint firstAttribute="trailing" secondItem="6av-UL-mfS" secondAttribute="trailing" constant="100" id="vK7-RI-zZC"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="systemUltraThinMaterialDark"/>
+                </visualEffectView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.97619217629999999" green="0.97293215990000004" blue="0.97616070509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="u7K-qg-eKu" secondAttribute="bottom" id="27c-Wo-VQ7"/>
                 <constraint firstAttribute="trailing" secondItem="5KL-ik-moN" secondAttribute="trailing" id="4a2-yt-g41"/>
                 <constraint firstItem="5KL-ik-moN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ORg-Wm-Lde"/>
                 <constraint firstAttribute="bottom" secondItem="5KL-ik-moN" secondAttribute="bottom" id="WbQ-Fj-qao"/>
+                <constraint firstItem="02N-Bm-5AN" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="dvd-sd-gGE"/>
+                <constraint firstItem="u7K-qg-eKu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hZe-U3-WUa"/>
+                <constraint firstItem="02N-Bm-5AN" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="rKD-jr-Qus"/>
                 <constraint firstItem="5KL-ik-moN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sb7-g0-Fw4"/>
+                <constraint firstAttribute="trailing" secondItem="u7K-qg-eKu" secondAttribute="trailing" id="wEh-Jk-g9P"/>
+                <constraint firstItem="u7K-qg-eKu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yti-Mm-FE7"/>
             </constraints>
             <point key="canvasLocation" x="100.00000000000001" y="80.357142857142847"/>
         </view>
     </objects>
     <resources>
-        <image name="lock.open" catalog="system" width="128" height="110"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

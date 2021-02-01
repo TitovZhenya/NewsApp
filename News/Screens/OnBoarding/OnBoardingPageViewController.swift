@@ -42,6 +42,8 @@ class OnBoardingPageViewController: UIPageViewController {
     private func setUpPageControl() {
         pageControl.frame = CGRect(x: 0, y: view.bounds.maxY - 50, width: view.bounds.size.width, height: 28)
         pageControl.numberOfPages = myViewControllers.count
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPageIndicatorTintColor = .systemBlue
         view.addSubview(pageControl)
         pageControl.addTarget(self, action: #selector(pageControlAction), for: .valueChanged)
     }
