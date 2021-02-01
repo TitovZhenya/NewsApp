@@ -12,7 +12,7 @@ class FavouriteNotesViewController: UIViewController {
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var lockedNotesStackView: UIStackView!
     
-    private var passwordAlertHelper: PasswordAlertHelper!
+    private(set) var passwordAlertHelper: PasswordAlertHelper!
     
     private var newsModel: News.Item?
     private(set) var userSettingsModel: SettingsModel?

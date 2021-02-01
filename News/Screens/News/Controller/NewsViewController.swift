@@ -52,8 +52,10 @@ class NewsViewController: UIViewController {
     
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
-        
         case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         default:
             break

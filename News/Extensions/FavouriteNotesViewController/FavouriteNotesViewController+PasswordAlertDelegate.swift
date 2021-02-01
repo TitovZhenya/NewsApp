@@ -10,11 +10,13 @@ extension FavouriteNotesViewController: PasswordAlertDelegate {
     
     func passwordAlertCompare(_ password: String) {
         let savedPassword = self.userSettingsModel?.password
-            if password == savedPassword {
+        if password == savedPassword {
             self.userSettingsModel?.isLocked = false
             RealmManager.shared.write(self.userSettingsModel)
-            self.setSettingsRealmModel()
+        } else {
+            passwordAlertHelper.wrongPassword()
         }
+        self.setSettingsRealmModel()
     }
     
     func passwordAlertPresent(_ alertController: UIAlertController) {
