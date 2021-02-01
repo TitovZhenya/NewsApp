@@ -58,7 +58,7 @@ class SignUpViewController: UIViewController {
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if !Utilities.shared.isPasswordCorrect(password) {
-            return "Password must contains one big letter, one number and is minimum seven char long"
+            return "Your password must contain at least seven characters, a number, and one uppercase letter"
         }
                 
     

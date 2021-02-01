@@ -15,7 +15,7 @@ class PasswordAlertHelper {
         alertController.addAction(UIAlertAction(title: "Yes", style: .default) { [weak self] action in
             guard let self = self else { return }
             self.alertController = UIAlertController(title: "Enter your password",
-                                                message: "Password must contains one big letter, one number and is minimum seven char long",
+                                                message: "Password must contain at least seven characters, a number, and one uppercase letter",
                                                 preferredStyle: .alert)
             self.alertController.addTextField {
                 $0.placeholder = "password"
