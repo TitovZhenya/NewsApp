@@ -9,8 +9,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         RealmManager.shared.configure()
         IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarManageBehaviour = .byTag
         return true
     }
 }
